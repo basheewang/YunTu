@@ -1,6 +1,50 @@
-\documentclass{standalone}
-\begin{document}
-Hi! $x^2+y^2=z^2$
+\documentclass[varwidth]{standalone}
+\usepackage{xeCJK}
+\setCJKmainfont{SimSun}
+\newCJKfontfamily[li]\hmls{FZZJ-HMLSJF}
 
-A test.
+\usepackage{stackengine}
+\usepackage{xcolor}
+\usepackage{xpinyin}
+% 若使用韩敏隶体
+% \xpinyinsetup{vsep=0.75em}      %
+
+% 定义反切命令
+\newcommand{\fq}[3]{ 
+  \stackunder[0pt]{%
+    \Large \xpinyin*{#1}}{%
+    \footnotesize \xpinyin*{#2}%
+    \textcolor{red}{\xpinyin*{#3}}}%
+}
+% 
+\newcommand{\fqhm}[3]{ 
+  \stackunder[0pt]{%
+    \Large \xpinyin*[vsep={0.75em}]{\hmls{#1}}}{%
+    \footnotesize \xpinyin*[vsep={0.75em}]{\hmls{#2}}%
+    \textcolor{red}{\xpinyin*[vsep={0.75em}]{\hmls{#3}}}}%
+}
+
+\usepackage{tabularray}
+
+\begin{document}
+% \stackunder{我}{是谁}
+% \stackunder[3pt]{\Large 中}{\footnotesize 文\textcolor{red}{字}}
+% \stackunder[0pt]{\Large \xpinyin*{中}}{\footnotesize \xpinyin*{文}\textcolor{red}{\xpinyin*{字}}}
+
+\fq{東}{德}{紅}
+\fq{东}{德}{红}
+
+\fqhm{東}{德}{紅}
+\fqhm{东}{德}{红}
+
+\begin{tblr}{|l|c|c|r|}
+  \hline
+  Alpha   & Beta & Gamma & Delta \\
+  \hline
+  Epsilon & Zeta & Eta   & Theta \\
+  \hline
+  \fqhm{東}{德}{紅} & & \fqhm{東}{德}{紅} & \fqhm{東}{德}{紅} \\
+  \hline
+\end{tblr}
+
 \end{document}
