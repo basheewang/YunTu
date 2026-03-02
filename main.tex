@@ -1,13 +1,36 @@
-\documentclass[varwidth]{standalone}
+% \documentclass[varwidth, border=2pt]{standalone}
+\documentclass[14pt]{article}
+\usepackage[a3paper, landscape, margin=0.5cm]{geometry}
+% \usepackage{showframe}
+
+% \usepackage{anyfontsize}
+% \fontsize{28}{32}\selectfont        % 设置 15pt 字体，18pt 行距
+
 \usepackage{xeCJK}
+\xeCJKsetup{
+  AutoFallBack = true,
+  AutoFakeBold = true,
+  PunctStyle = kaiming,
+  CheckFullRight = true,
+  CheckSingle = false,
+  AllowBreakBetweenPuncts = true,
+  CJKmath = true,
+}
+
 \setCJKmainfont{SimSun}
 \newCJKfontfamily[li]\hmls{FZZJ-HMLSJF}
+\newCJKfontfamily[kai]\fzxk{FZNewKai-Z03}
+
+\xeCJKDeclareSubCJKBlock{Ext-A}{ "3400 -> "4DB5 }
+\xeCJKDeclareSubCJKBlock{Ext-B}{ "20000 -> "2A6DF }
+\xeCJKDeclareSubCJKBlock{CircNum}{ "2460 -> "2473 }
 
 \usepackage{stackengine}
 \usepackage{xcolor}
 \usepackage{xpinyin}
 % 若使用韩敏隶体
 % \xpinyinsetup{vsep=0.75em}      %
+\setpinyin{薄}{bo2}
 
 % 定义反切命令
 \newcommand{\fq}[3]{ 
@@ -16,10 +39,16 @@
     \footnotesize \xpinyin*{#2}%
     \textcolor{red}{\xpinyin*{#3}}}%
 }
+\newcommand{\fqea}[4]{ 
+  \stackunder[1pt]{%
+    \Large \textcolor{blue}{\xpinyin[vsep={0.9em}]{#1}{#2}}}{%
+    \footnotesize \xpinyin*[vsep={0.75em}]{\hmls{#3}}%
+    \textcolor{red}{\xpinyin*[vsep={0.75em}]{\hmls{#4}}}}%
+}
 % 
 \newcommand{\fqhm}[3]{ 
-  \stackunder[0pt]{%
-    \Large \xpinyin*[vsep={0.75em}]{\hmls{#1}}}{%
+  \stackunder[1pt]{%
+    \Large \xpinyin*[vsep={0.9em}]{#1}}{%
     \footnotesize \xpinyin*[vsep={0.75em}]{\hmls{#2}}%
     \textcolor{red}{\xpinyin*[vsep={0.75em}]{\hmls{#3}}}}%
 }
@@ -27,36 +56,47 @@
 \usepackage{tabularray}
 
 \begin{document}
-% \stackunder{我}{是谁}
-% \stackunder[3pt]{\Large 中}{\footnotesize 文\textcolor{red}{字}}
-% \stackunder[0pt]{\Large \xpinyin*{中}}{\footnotesize \xpinyin*{文}\textcolor{red}{\xpinyin*{字}}}
 
-% \fq{東}{德}{紅}
-% \fq{东}{德}{红}
+% \the\textwidth  % 显示文本宽度
+% \the\textheight % 显示文本高度
+% \the\paperwidth % 显示纸张宽度
+% \the\paperheight % 显示纸张高度
 
-% \fqhm{東}{德}{紅}
-% \fqhm{东}{德}{红}
 
-% \begin{tblr}{|l|c|c|r|}
-%   \hline
-%   Alpha   & Beta & Gamma & Delta \\
-%   \hline
-%   Epsilon & Zeta & Eta   & Theta \\
-%   \hline
-%   \fqhm{東}{德}{紅} & & \fqhm{東}{德}{紅} & \fqhm{東}{德}{紅} \\
-%   \hline
-% \end{tblr}
-
-\begin{tblr}{|c|c|c|c|c|c|}
-  \SetCell[r=4]{c} 摄 & \SetCell[r=4]{c} 等 & \SetCell[c=4]{c} 唇音 &      &    &      \\
-  \hline
-                      &                     & 清                    & 次清 & 浊 & 次浊 \\
-  \hline
-                      &                     & 帮                    & 滂   & 并 & 明   \\
-  \hline
-                      &                     & 非                    & 敷   & 奉 & 微   \\
-  \hline
-\end{tblr}
+\begin{center}
+  %          % |  调  |  韵  |  等  |       唇音(4)             |          舌音(4)          |          牙音(4)          |          齿音(5)                 |           喉音(4)         |  舌齿音(2)  |
+  \begin{tblr}{|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|}
+    \hline
+    \SetCell[r=6]{c} 調  & \SetCell[r=6]{c} 韻  & \SetCell[r=2]{c} 等 & \SetCell[c=4]{c} 唇音 &                   &                   &                   & \SetCell[c=4]{c} 舌音 &                   &                   &           & \SetCell[c=4]{c} 牙音 &                   &                   &                          & \SetCell[c=5]{c} 齒音 &                   &                   &                   &           & \SetCell[c=4]{c} 喉音 &                   &                   &                   & \SetCell[c=2]{c} 舌齒音 &                   \\
+    \hline
+                         &                      &                     & 清                    & {次清}            & 濁                & {次濁}            & 清                    & {次清}            & 濁                & {次濁}    & 清                    & {次清}            & 濁                & {次濁}                   & 清                    & {次清}            & 濁                & 清                & 濁        & 清                    & 清                & 濁                & {清濁}            & {清濁}                  & {清濁}            \\
+    \hline
+                         &                      & \fzxk{一}           & \fzxk{幫}             & \fzxk{滂}         & \fzxk{並}         & \fzxk{明}         & \fzxk{端}             & \fzxk{透}         & \fzxk{定}         & \fzxk{泥} & \fzxk{見}             & \fzxk{溪}         &                   & \fzxk{疑}                & \fzxk{精}             & \fzxk{清}         & \fzxk{從}         & \fzxk{心}         &           & \fzxk{影}             & \fzxk{曉}         & \fzxk{匣}         &                   & \fzxk{來}               &                   \\
+    \hline
+                         &                      & \fzxk{二}           & \fzxk{幫}             & \fzxk{滂}         & \fzxk{並}         & \fzxk{明}         & \fzxk{知}             & \fzxk{澈}         & \fzxk{澄}         & \fzxk{娘} & \fzxk{見}             & \fzxk{溪}         &                   & \fzxk{疑}                & \fzxk{照}             & \fzxk{穿}         & \fzxk{床}         & \fzxk{審}         & \fzxk{禪} & \fzxk{影}             & \fzxk{曉}         & \fzxk{匣}         &                   & \fzxk{來}               &                   \\
+    \hline
+                         &                      & \fzxk{三}           & {\fzxk{幫非}}         & {\fzxk{滂敷}}     & {\fzxk{並奉}}     & {\fzxk{明微}}     & \fzxk{知}             & \fzxk{澈}         & \fzxk{澄}         & \fzxk{娘} & \fzxk{見}             & \fzxk{溪}         & \fzxk{群}         & \fzxk{疑}                & \fzxk{照}             & \fzxk{穿}         & \fzxk{床}         & \fzxk{審}         & \fzxk{禪} & \fzxk{影}             & \fzxk{曉}         &                   & \fzxk{喻}         & \fzxk{來}               & \fzxk{日}         \\
+    \hline
+                         &                      & \fzxk{四}           & \fzxk{幫}             & \fzxk{滂}         & \fzxk{並}         & \fzxk{明}         & \fzxk{端}             & \fzxk{透}         & \fzxk{定}         & \fzxk{泥} & \fzxk{見}             & \fzxk{溪}         & \fzxk{群}         & \fzxk{疑}                & \fzxk{精}             & \fzxk{清}         & \fzxk{從}         & \fzxk{心}         & \fzxk{邪} & \fzxk{影}             & \fzxk{曉}         & \fzxk{匣}         & \fzxk{喻}         & \fzxk{來}               &                   \\
+    \hline
+    \SetCell[r=4]{m}{平} & \SetCell[r=4]{m}{東} & 一                  &                       &                   & \fqhm{蓬}{薄}{紅} & \fqhm{蒙}{莫}{紅} & \fqhm{東}{德}{紅}     & \fqhm{通}{他}{紅} & \fqhm{同}{徒}{紅} &           & \fqhm{公}{古}{紅}     & \fqhm{空}{苦}{紅} &                   & \fqea{㟅}{weng1}{五}{東} & \fqhm{葼}{子}{紅}     & \fqhm{怱}{倉}{紅} & \fqhm{叢}{徂}{紅} & \fqhm{檧}{蘇}{公} &           & \fqhm{翁}{烏}{紅}     & \fqhm{烘}{呼}{東} & \fqhm{洪}{戶}{公} &                   & \fqhm{籠}{廬}{紅}       &                   \\
+    \hline
+                         &                      & 二                  &                       &                   &                   &                   &                       &                   &                   &           &                       &                   &                   &                          &                       &                   & \fqhm{崇}{鋤}{弓} &                   &           &                       &                   &                   &                   &                         &                   \\
+    \hline
+                         &                      & 三                  & \fqhm{風}{方}{戎}     & \fqhm{豐}{敷}{空} & \fqhm{馮}{房}{戎} & \fqhm{瞢}{莫}{中} & \fqhm{中}{陟}{弓}     & \fqhm{忡}{敕}{中} & \fqhm{蟲}{直}{弓} &           & \fqhm{弓}{居}{戎}     & \fqhm{穹}{去}{宮} & \fqhm{窮}{渠}{弓} &                          & \fqhm{終}{職}{戎}     & \fqhm{充}{昌}{終} &                   &                   &           &                       &                   & \fqhm{雄}{羽}{弓} &                   & \fqhm{隆}{力}{中}       & \fqhm{戎}{如}{融} \\
+    \hline
+                         &                      & 四                  &                       &                   &                   &                   &                       &                   &                   &           &                       &                   &                   &                          &                       &                   &                   & \fqhm{嵩}{息}{弓} &           &                       &                   &                   & \fqhm{融}{以}{戎} &                         &                   \\
+    \hline
+    \SetCell[r=4]{m}{上} & \SetCell[r=4]{m}{董} & 一                  &                       &                   &                   &                   &                       &                   &                   &           &                       &                   &                   &                          &                       &                   &                   &                   &           &                       &                   &                   &                   &                         &                   \\
+    \hline                                            
+                         &                      & 二                  &                       &                   &                   &                   &                       &                   &                   &           &                       &                   &                   &                          &                       &                   &                   &                   &           &                       &                   &                   &                   &                         &                   \\
+    \hline                                            
+                         &                      & 三                  &                       &                   &                   &                   &                       &                   &                   &           &                       &                   &                   &                          &                       &                   &                   &                   &           &                       &                   &                   &                   &                         &                   \\
+    \hline                                            
+                         &                      & 四                  &                       &                   &                   &                   &                       &                   &                   &           &                       &                   &                   &                          &                       &                   &                   &                   &           &                       &                   &                   &                   &                         &                   \\
+    \hline
+  \end{tblr}
+\end{center}
 
 \end{document}
 
