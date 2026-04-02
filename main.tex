@@ -40,22 +40,23 @@ CircNum={IosevkaTerm NFM}]
 \setpinyin{薄}{bo2}
 \setpinyin{六}{lu4}
 \setpinyin{都}{du1}
+\setpinyin{角}{jue2}
 
 % 定义反切命令
-\newcommand{\fq}[3]{ 
+\newcommand{\fq}[3]{
   \stackunder[0pt]{%
     \Large \xpinyin*{#1}}{%
     \footnotesize \xpinyin*{#2}%
     \textcolor{red}{\xpinyin*{#3}}}%
 }
-\newcommand{\fqea}[4]{ 
+\newcommand{\fqea}[4]{
   \stackunder[1pt]{%
     \Large \textcolor{blue}{\xpinyin[vsep={0.9em}]{#1}{#2}}}{%
     \footnotesize \xpinyin*[vsep={0.75em}]{\hmls{#3}}%
     \textcolor{red}{\xpinyin*[vsep={0.75em}]{\hmls{#4}}}}%
 }
-% 
-\newcommand{\fqhm}[3]{ 
+%
+\newcommand{\fqhm}[3]{
   \stackunder[1pt]{%
     \Large \xpinyin*[vsep={0.9em}]{#1}}{%
     \footnotesize \xpinyin*[vsep={0.75em}]{\hmls{#2}}%
@@ -63,6 +64,7 @@ CircNum={IosevkaTerm NFM}]
 }
 
 \usepackage{tabularray}
+\usepackage{pifont}
 
 \begin{document}
 
@@ -71,8 +73,16 @@ CircNum={IosevkaTerm NFM}]
 % \the\paperwidth % 显示纸张宽度
 % \the\paperheight % 显示纸张高度
 
-% \input{yuntu001}\newpage{}
-\input{yuntu002}
+% \input{yuntu001}
+% \input{yuntu002}
+% \input{yuntu003}
+% \input{yuntu004}
+% \input{yuntu005}
+% \input{yuntu006}
+\input{yuntu007}
+% \input{yuntu008}
+% \input{yuntu009}
+% \input{yuntu010}
 
 \end{document}
 
@@ -80,4 +90,4 @@ CircNum={IosevkaTerm NFM}]
 % TeX-engine: xetex
 % TeX-master: t
 % End:
-% LocalWords:  hline vsep LocalWords xetex
+% LocalWords:  hline vsep LocalWords xetex yuntu
